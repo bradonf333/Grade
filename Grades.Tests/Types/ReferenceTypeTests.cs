@@ -12,6 +12,48 @@ namespace Grades.Tests.Types
     public class TypeTests
     {
         /// <summary>
+        /// Shows that the string type is Immutable
+        /// If you call a method on the string type it will return a NEW string.
+        /// You have to assign that string to a variable or else the changes made will be lost.
+        /// </summary>
+        [TestMethod]
+        public void UpperCaseString()
+        {
+            string name = "bradon";
+
+            // ToUpper will return a string in uppercase. You need to assign that new value to a variable,
+            // if not then nothing happens
+            name.ToUpper();
+
+            // Shows that nothing happened to the string when using the .ToUpper
+            Assert.AreNotEqual("BRADON", name);
+
+            // Assigns the new ToUpper string to the name variable
+            name = name.ToUpper();
+            // Shows that after we re-assigned the variable they are now equal
+            Assert.AreEqual("BRADON", name);
+        }
+
+        /// <summary>
+        /// Shows that the date is Immutable.
+        /// You can't just use an operation like AddDays, you need to actually assign the value
+        /// that is returned into a variable. The variable can be new or you can re-assign the original.
+        /// </summary>
+        [TestMethod]
+        public void AddDaysToDateTime()
+        {
+            DateTime date = new DateTime(2017, 3, 3);
+            
+            // AddDays returns a new value, since we are not assigning the new value nothing happens
+            date.AddDays(1); 
+            Assert.AreNotEqual(4, date.Day);
+
+            // Now we are assigning AddDays to the date variable, this will reflect the change.
+            date = date.AddDays(1);
+            Assert.AreEqual(4, date.Day);
+        }
+
+        /// <summary>
         /// This TestMethod will test passing value type variables into methods.
         /// Since these are value types anything done in the calling method will not affect the value
         /// types in this method. That is because they are VALUE types not REFERENCE types.
