@@ -27,12 +27,12 @@ namespace Grade
 
         static void WriteResult(string description, int result)
         {
-            Console.WriteLine(description + ": " + result);
+            Console.WriteLine($"{description}: {result}");
         }
 
         static void WriteResult(string description, float result)
         {
-            Console.WriteLine(description + ": " + result);
+            Console.WriteLine("{0}: {1:F2}", description, result);
         }
     }
 }
