@@ -12,6 +12,51 @@ namespace Grades.Tests.Types
     public class TypeTests
     {
         /// <summary>
+        /// Arrays are reference types. This means that if I pass an array into a method as a parameter,
+        /// anything done to the array in the called method will be reflected in the original array.
+        /// This would be the same as passing an object into an method like we did with the GiveBookAName method below.
+        /// </summary>
+        [TestMethod]
+        public void UsingArrays()
+        {
+            float[] grades;
+            grades = new float[3];
+
+            // Arrays are a reference type so anything done in this method will affect the array.
+            AddGrades(grades);
+
+            // This will be equal
+            Assert.AreEqual(89.1f, grades[1]);
+
+            // This is method actually creates a new array and assigns that value within the new array.
+            // The array in the parameter is left alone.
+            AddFakeGrades(grades);
+
+            // Still equal since the previous step did not change the value in the original array
+            Assert.AreEqual(89.1f, grades[1]);
+        }
+
+        /// <summary>
+        /// Arrays are reference types so anything done in this method will affect the array that used when calling this method.
+        /// </summary>
+        /// <param name="grades"></param>
+        private void AddGrades(float[] grades)
+        {
+            grades[1] = 89.1f;
+        }
+
+        /// <summary>
+        /// This creates a new grades array and assigns the 1st index to 89.1f.
+        /// This will leave the original array that was passed as a parameter alone.
+        /// </summary>
+        /// <param name="grades"></param>
+        private void AddFakeGrades(float[] grades)
+        {
+            grades = new float[5];
+            grades[1] = 90.5f;
+        }
+
+        /// <summary>
         /// Shows that the string type is Immutable
         /// If you call a method on the string type it will return a NEW string.
         /// You have to assign that string to a variable or else the changes made will be lost.
