@@ -15,11 +15,14 @@ namespace Grade
             //synth.Speak("Hello! This is the grade book program");
 
             GradeBook book = new GradeBook();
+            book.Name = "Bradon's Grade Book";
+            book.Name = null;
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
 
             GradeStatistics stats = book.ComputeStatistics();
+            Console.WriteLine(book.Name);
             WriteResult("Average", stats.AverageGrade);
             WriteResult("Highest", (int)stats.HighestGrade);
             WriteResult("Lowest", stats.LowestGrade);
