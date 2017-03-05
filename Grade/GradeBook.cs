@@ -9,7 +9,7 @@ namespace Grade
     public class GradeBook
     {
         private string name;
-        public NameChangedDelegate NameChanged;
+        public event NameChangedDelegate NameChanged;
 
         public string Name
         {
@@ -24,7 +24,10 @@ namespace Grade
                 {
                     if(name != value)
                     {
-                        NameChanged(name, value);
+                        NameChangedEventArgs args = new NameChangedEventArgs();
+                        args.ExistingName = name;
+                        args.NewName = value;
+                        NameChanged(this, args);
                     }
                     name = value;
                 }
