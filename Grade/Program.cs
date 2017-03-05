@@ -32,6 +32,14 @@ namespace Grade
             WriteResult("Lowest", stats.LowestGrade);
         }
 
+        /// <summary>
+        /// This method takes an object parameter and an instance of the NameChangedEventArgs class.
+        /// 
+        /// Then to get the ExistingName and the NewName we access them via the instance of the NameChangedEventArgs.
+        /// To do this we say args.ExistingName and args.NewName
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         static void OnNameChanged(object sender, NameChangedEventArgs args)
         {
             Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
