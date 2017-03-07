@@ -9,6 +9,7 @@ namespace Grade
 {
     class ProgramCSwEventHandler
     {
+        /*
         static void Main(string[] args)
         {
             //SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -54,5 +55,6 @@ namespace Grade
         {
             Console.WriteLine("{0}: {1:F2}", description, result);
         }
+        */
     }
 }
