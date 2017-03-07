@@ -8,8 +8,12 @@ namespace Grade
 {
     public class GradeStatistics
     {
+        // Initialize float variables
         public float AverageGrade, HighestGrade, LowestGrade;
 
+        /// <summary>
+        /// Description property used to hold the description of the letter grade
+        /// </summary>
         public string Description
         {
             get
@@ -38,6 +42,9 @@ namespace Grade
             }
         }
 
+        /// <summary>
+        /// LetterGrade property that is used to define a letter grade based on the score of the AverageGrade
+        /// </summary>
         public string LetterGrade
         {
             get
@@ -69,6 +76,9 @@ namespace Grade
             }
         }
 
+        /// <summary>
+        /// Constructor used to initialize Highest and Lowest Grades
+        /// </summary>
         public GradeStatistics()
         {
             HighestGrade = 0;
