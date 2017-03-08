@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +11,6 @@ namespace Grade
         /*
         static void Main(string[] args)
         {
-            //SpeechSynthesizer synth = new SpeechSynthesizer();
-            //synth.Speak("Hello! This is the grade book program");
-
             GradeBook book = new GradeBook();
 
             book.NameChanged += OnNameChanged; // Add subscriber(OnNameChanged) to the event "NameChangedDelegate"
