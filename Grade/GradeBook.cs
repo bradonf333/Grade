@@ -26,23 +26,25 @@ namespace Grade
 
             set
             {
-                if(!String.IsNullOrEmpty(value))
+                if (String.IsNullOrEmpty(value))
                 {
-                    if(name != value)
-                    {
-                        // Create an instance of our custom class that will hold the new and old names
-                        NameChangedEventArgs args = new NameChangedEventArgs();
-
-                        // Set the ExistingName and the NewName of the custome object
-                        args.ExistingName = name;
-                        args.NewName = value;
-
-                        // Invoke the NameChangedDelegate which is named NameChanged (see above)
-                        // Use "this" to pass along the current object which in this case is a GradeBook.
-                        NameChanged(this, args);
-                    }
-                    name = value;
+                    throw new ArgumentNullException("Name cannot be null or empty");
                 }
+
+                if (name != value)
+                {
+                    // Create an instance of our custom class that will hold the new and old names
+                    NameChangedEventArgs args = new NameChangedEventArgs();
+
+                    // Set the ExistingName and the NewName of the custome object
+                    args.ExistingName = name;
+                    args.NewName = value;
+
+                    // Invoke the NameChangedDelegate which is named NameChanged (see above)
+                    // Use "this" to pass along the current object which in this case is a GradeBook.
+                    NameChanged(this, args);
+                }
+                name = value;
             }
         }
 
