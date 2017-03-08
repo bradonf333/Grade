@@ -11,7 +11,12 @@ namespace Grade
     {
         private string name;
         public event NameChangedDelegate NameChanged;
+        private List<float> grades;
 
+        /// <summary>
+        /// Name property
+        /// Makes sure name is not null or empty
+        /// </summary>
         public string Name
         {
             get
@@ -41,6 +46,10 @@ namespace Grade
             }
         }
 
+        /// <summary>
+        /// WriteGrades method used to write all grades in the given Gradebook
+        /// </summary>
+        /// <param name="destination"></param>
         public void WriteGrades(TextWriter destination)
         {
             for (int i = 0; i < grades.Count; i++)
@@ -49,14 +58,20 @@ namespace Grade
             }
         }
 
-        private List<float> grades;
-
+        /// <summary>
+        /// Constructor for Gradebook
+        /// </summary>
         public GradeBook()
         {
             name = "Empty";
             grades = new List<float>();
         }
 
+        /// <summary>
+        /// Computes the statitistics for the gradebook
+        /// This includes Highest, Lowest and Average Grades
+        /// </summary>
+        /// <returns></returns>
         public GradeStatistics ComputeStatistics()
         {
             GradeStatistics stats = new GradeStatistics();
@@ -73,6 +88,10 @@ namespace Grade
             return stats;
         }
 
+        /// <summary>
+        /// Adds the given grade to the gradebook list
+        /// </summary>
+        /// <param name="grade"></param>
         public void AddGrade(float grade)
         {
             grades.Add(grade);
