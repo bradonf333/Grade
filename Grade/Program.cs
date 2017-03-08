@@ -11,7 +11,21 @@ namespace Grade
         static void Main(string[] args)
         {
             GradeBook book = new GradeBook();
-            book.Name = null;
+			try
+			{
+				Console.Write("Enter a name for the Gradebook: ");
+				book.Name = Console.ReadLine();
+			}
+			catch (ArgumentException ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			// Since we added the additonal if statement in the GradeBook.Name property
+			// this really isn't needed.
+			catch (NullReferenceException)
+			{
+				Console.WriteLine("Something went wrong");
+			}
 
             book.AddGrade(91);
             book.AddGrade(89.5f);

@@ -31,7 +31,7 @@ namespace Grade
                     throw new ArgumentNullException("Name cannot be null or empty");
                 }
 
-                if (name != value)
+				if (name != value && NameChanged != null)
                 {
                     // Create an instance of our custom class that will hold the new and old names
                     NameChangedEventArgs args = new NameChangedEventArgs();
