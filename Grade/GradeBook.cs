@@ -11,7 +11,8 @@ namespace Grade
     {
         private string name;
         public event NameChangedDelegate NameChanged;
-        private List<float> grades;
+        // Protected member can be accessed from derived classes (inherited from this class)
+        protected List<float> grades;
 
         /// <summary>
         /// Name property
@@ -76,6 +77,8 @@ namespace Grade
         /// <returns></returns>
         public GradeStatistics ComputeStatistics()
         {
+            Console.WriteLine("Gradebook::ComputeStatistics");
+
             GradeStatistics stats = new GradeStatistics();
 
             float sum = 0;

@@ -10,20 +10,24 @@ namespace Grade
     class Program
     {
         static void Main(string[] args)
-		{
-			GradeBook book = new GradeBook();
+        {
+            GradeBook book = new ThrowAwayGradeBook();
 
-			AddGrades(book);
-			GetBookName(book);
-			WriteResults(book);
+            //GetBookName(book);
+            AddGrades(book);
+            WriteResults(book);
+            SaveGrades(book);
+        }
 
-			using (StreamWriter outputFile = File.CreateText("grades.txt"))
-			{
-				book.WriteGrades(outputFile);
-			}
-		}
+        private static void SaveGrades(GradeBook book)
+        {
+            using (StreamWriter outputFile = File.CreateText("grades.txt"))
+            {
+                book.WriteGrades(outputFile);
+            }
+        }
 
-		static void WriteResults(GradeBook book)
+        static void WriteResults(GradeBook book)
 		{
 			GradeStatistics stats = book.ComputeStatistics();
 			WriteResult("Average", stats.AverageGrade);
