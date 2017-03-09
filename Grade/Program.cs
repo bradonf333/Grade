@@ -11,12 +11,17 @@ namespace Grade
     {
         static void Main(string[] args)
         {
-            GradeBook book = new ThrowAwayGradeBook();
+            GradeBook book = CreateGradeBook();
 
             //GetBookName(book);
             AddGrades(book);
-            WriteResults(book);
             SaveGrades(book);
+            WriteResults(book);
+        }
+
+        private static GradeBook CreateGradeBook()
+        {
+            return new ThrowAwayGradeBook();
         }
 
         private static void SaveGrades(GradeBook book)
@@ -28,15 +33,19 @@ namespace Grade
         }
 
         static void WriteResults(GradeBook book)
-		{
-			GradeStatistics stats = book.ComputeStatistics();
-			WriteResult("Average", stats.AverageGrade);
-			WriteResult("Highest", stats.HighestGrade);
-			WriteResult("Lowest", stats.LowestGrade);
-			WriteResult(stats.Description, stats.LetterGrade);
-		}
+        {
+            // Because GradeBook.ComputeStatistics has virtual keyword anything that inherits this can override it.
+            // We created a new ThrowAwayGradeBook object named book and called book.ComputeStatistics.
+            // Since ThrowAwayGradeBook.ComputeStatistics uses the override keyword we can override the virtual
+            // method of the GradeBook and call the method we really want.
+            GradeStatistics stats = book.ComputeStatistics();
+            WriteResult("Average", stats.AverageGrade);
+            WriteResult("Highest", stats.HighestGrade);
+            WriteResult("Lowest", stats.LowestGrade);
+            WriteResult(stats.Description, stats.LetterGrade);
+        }
 
-		static void WriteResult(string description, float result)
+        static void WriteResult(string description, float result)
         {
             Console.WriteLine($"{description}: {result:F2}");
         }
@@ -46,24 +55,24 @@ namespace Grade
             Console.WriteLine($"{description}: {result}");
         }
 
-		static void AddGrades(GradeBook book)
-		{
-			book.AddGrade(91);
-			book.AddGrade(89.5f);
-			book.AddGrade(75);
-		}
+        static void AddGrades(GradeBook book)
+        {
+            book.AddGrade(91);
+            book.AddGrade(89.5f);
+            book.AddGrade(75);
+        }
 
-		static void GetBookName(GradeBook book)
-		{
-			try
-			{
-				Console.Write("Enter a name for the Gradebook: ");
-				book.Name = Console.ReadLine();
-			}
-			catch (ArgumentException ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-		}
+        static void GetBookName(GradeBook book)
+        {
+            try
+            {
+                Console.Write("Enter a name for the Gradebook: ");
+                book.Name = Console.ReadLine();
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

@@ -75,7 +75,7 @@ namespace Grade
         /// This includes Highest, Lowest and Average Grades
         /// </summary>
         /// <returns></returns>
-        public GradeStatistics ComputeStatistics()
+        public virtual GradeStatistics ComputeStatistics()
         {
             Console.WriteLine("Gradebook::ComputeStatistics");
 
