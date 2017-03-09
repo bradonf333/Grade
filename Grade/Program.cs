@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,9 @@ namespace Grade
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
-            book.WriteGrades(Console.Out);
+
+			StreamWriter outputFile = File.CreateText("grades.txt");
+			book.WriteGrades(outputFile);
 
             GradeStatistics stats = book.ComputeStatistics();
             WriteResult("Average", stats.AverageGrade);
