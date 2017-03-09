@@ -15,13 +15,12 @@ namespace Grade
 
 			AddGrades(book);
 			GetBookName(book);
+			WriteResults(book);
 
 			using (StreamWriter outputFile = File.CreateText("grades.txt"))
 			{
 				book.WriteGrades(outputFile);
 			}
-
-			WriteResults(book);
 		}
 
 		static void WriteResults(GradeBook book)

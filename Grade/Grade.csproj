@@ -54,6 +54,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="ProgramCSwEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThrowAwayGradeBook.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
