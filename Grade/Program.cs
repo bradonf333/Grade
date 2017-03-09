@@ -10,8 +10,48 @@ namespace Grade
     class Program
     {
         static void Main(string[] args)
+		{
+			GradeBook book = new GradeBook();
+
+			AddGrades(book);
+			GetBookName(book);
+
+			using (StreamWriter outputFile = File.CreateText("grades.txt"))
+			{
+				book.WriteGrades(outputFile);
+			}
+
+			WriteResults(book);
+		}
+
+		static void WriteResults(GradeBook book)
+		{
+			GradeStatistics stats = book.ComputeStatistics();
+			WriteResult("Average", stats.AverageGrade);
+			WriteResult("Highest", stats.HighestGrade);
+			WriteResult("Lowest", stats.LowestGrade);
+			WriteResult(stats.Description, stats.LetterGrade);
+		}
+
+		static void WriteResult(string description, float result)
         {
-            GradeBook book = new GradeBook();
+            Console.WriteLine($"{description}: {result:F2}");
+        }
+
+        static void WriteResult(string description, string result)
+        {
+            Console.WriteLine($"{description}: {result}");
+        }
+
+		static void AddGrades(GradeBook book)
+		{
+			book.AddGrade(91);
+			book.AddGrade(89.5f);
+			book.AddGrade(75);
+		}
+
+		static void GetBookName(GradeBook book)
+		{
 			try
 			{
 				Console.Write("Enter a name for the Gradebook: ");
@@ -21,35 +61,6 @@ namespace Grade
 			{
 				Console.WriteLine(ex.Message);
 			}
-			// Since we added the additonal if statement in the GradeBook.Name property
-			// this really isn't needed.
-			catch (NullReferenceException)
-			{
-				Console.WriteLine("Something went wrong");
-			}
-
-            book.AddGrade(91);
-            book.AddGrade(89.5f);
-            book.AddGrade(75);
-
-			StreamWriter outputFile = File.CreateText("grades.txt");
-			book.WriteGrades(outputFile);
-
-            GradeStatistics stats = book.ComputeStatistics();
-            WriteResult("Average", stats.AverageGrade);
-            WriteResult("Highest", stats.HighestGrade);
-            WriteResult("Lowest", stats.LowestGrade);
-            WriteResult(stats.Description, stats.LetterGrade);
-        }
-
-        static void WriteResult(string description, float result)
-        {
-            Console.WriteLine($"{description}: {result:F2}");
-        }
-
-        static void WriteResult(string description, string result)
-        {
-            Console.WriteLine($"{description}: {result}");
-        }
+		}
     }
 }
