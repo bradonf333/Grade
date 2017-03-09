@@ -7,53 +7,16 @@ using System.Threading.Tasks;
 
 namespace Grade
 {
-    public class GradeBook
+    public class GradeBook : GradeTracker
     {
-        private string name;
-        public event NameChangedDelegate NameChanged;
         // Protected member can be accessed from derived classes (inherited from this class)
         protected List<float> grades;
-
-        /// <summary>
-        /// Name property
-        /// Makes sure name is not null or empty
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                if (String.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("Name cannot be null or empty");
-                }
-
-				if (name != value && NameChanged != null)
-                {
-                    // Create an instance of our custom class that will hold the new and old names
-                    NameChangedEventArgs args = new NameChangedEventArgs();
-
-                    // Set the ExistingName and the NewName of the custome object
-                    args.ExistingName = name;
-                    args.NewName = value;
-
-                    // Invoke the NameChangedDelegate which is named NameChanged (see above)
-                    // Use "this" to pass along the current object which in this case is a GradeBook.
-                    NameChanged(this, args);
-                }
-                name = value;
-            }
-        }
 
         /// <summary>
         /// WriteGrades method used to write all grades in the given Gradebook
         /// </summary>
         /// <param name="destination"></param>
-        public void WriteGrades(TextWriter destination)
+        public override void WriteGrades(TextWriter destination)
         {
             for (int i = 0; i < grades.Count; i++)
             {
@@ -75,7 +38,7 @@ namespace Grade
         /// This includes Highest, Lowest and Average Grades
         /// </summary>
         /// <returns></returns>
-        public virtual GradeStatistics ComputeStatistics()
+        public override GradeStatistics ComputeStatistics()
         {
             Console.WriteLine("Gradebook::ComputeStatistics");
 
@@ -97,7 +60,7 @@ namespace Grade
         /// Adds the given grade to the gradebook list
         /// </summary>
         /// <param name="grade"></param>
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             grades.Add(grade);
         }

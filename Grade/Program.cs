@@ -11,7 +11,7 @@ namespace Grade
     {
         static void Main(string[] args)
         {
-            GradeBook book = CreateGradeBook();
+            GradeTracker book = CreateGradeBook();
 
             //GetBookName(book);
             AddGrades(book);
@@ -19,12 +19,12 @@ namespace Grade
             WriteResults(book);
         }
 
-        private static GradeBook CreateGradeBook()
+        private static GradeTracker CreateGradeBook()
         {
             return new ThrowAwayGradeBook();
         }
 
-        private static void SaveGrades(GradeBook book)
+        private static void SaveGrades(GradeTracker book)
         {
             using (StreamWriter outputFile = File.CreateText("grades.txt"))
             {
@@ -32,7 +32,7 @@ namespace Grade
             }
         }
 
-        static void WriteResults(GradeBook book)
+        static void WriteResults(GradeTracker book)
         {
             // Because GradeBook.ComputeStatistics has virtual keyword anything that inherits this can override it.
             // We created a new ThrowAwayGradeBook object named book and called book.ComputeStatistics.
@@ -55,14 +55,14 @@ namespace Grade
             Console.WriteLine($"{description}: {result}");
         }
 
-        static void AddGrades(GradeBook book)
+        static void AddGrades(GradeTracker book)
         {
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
         }
 
-        static void GetBookName(GradeBook book)
+        static void GetBookName(GradeTracker book)
         {
             try
             {
