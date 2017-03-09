@@ -39,6 +39,11 @@ namespace Grade
             // Since ThrowAwayGradeBook.ComputeStatistics uses the override keyword we can override the virtual
             // method of the GradeBook and call the method we really want.
             GradeStatistics stats = book.ComputeStatistics();
+
+            foreach (float grade in book)
+            {
+                Console.WriteLine(grade);
+            }
             WriteResult("Average", stats.AverageGrade);
             WriteResult("Highest", stats.HighestGrade);
             WriteResult("Lowest", stats.LowestGrade);
