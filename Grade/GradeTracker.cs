@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Grade
 {
-    public abstract class GradeTracker
+    public abstract class GradeTracker : IGradeTracker
     {
         /*--
          * I know that the GradeBook will need to track grades but I am not sure of how they 

@@ -1,9 +1,11 @@
-﻿namespace Grade
+﻿using System.IO;
+
+namespace Grade
 {
     internal interface IGradeTracker
     {
-        public abstract void AddGrade(float grade);
-        public abstract GradeStatistics ComputeStatistics();
-        public abstract void WriteGrades(TextWriter destination);
+        void AddGrade(float grade);
+        GradeStatistics ComputeStatistics();
+        void WriteGrades(TextWriter destination);
     }
 }
